@@ -8,8 +8,9 @@ Group:		X11/Applications
 Source0:	http://download.berlios.de/xfce-goodies/%{name}-%{version}.tar.gz
 # Source0-md5:	ad6cbb65b356342bf1b474b612beadf4
 URL:		http://www.xfce.org/
-BuildRequires:	xfce4-panel-devel
-Requires:	xfce4-panel
+BuildRequires:	pkgconfig
+BuildRequires:	xfce4-panel-devel >= 3.99.2
+Requires:	xfce4-panel >= 3.99.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -22,7 +23,8 @@ Wtyczka dla panelu XFce4 pokazuj±ca zu¿ycie baterii.
 %setup -q
 
 %build
-%configure
+%configure \
+	--disable-static
 %{__make}
 
 %install
@@ -30,6 +32,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/xfce4/panel-plugins/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
