@@ -7,7 +7,7 @@ License:	BSD-like
 Group:		X11/Applications
 Source0:	http://download.berlios.de/xfce-goodies/%{name}-%{version}.tar.gz
 # Source0-md5:	ad6cbb65b356342bf1b474b612beadf4
-URL:		http://www.xfce.org/
+URL:		http://xfce-goodies.berlios.de/
 BuildRequires:	pkgconfig
 BuildRequires:	xfce4-panel-devel >= 3.99.2
 Requires:	xfce4-panel >= 3.99.2
@@ -25,6 +25,7 @@ Wtyczka dla panelu XFce4 pokazuj±ca zu¿ycie baterii.
 %build
 %configure \
 	--disable-static
+
 %{__make}
 
 %install
