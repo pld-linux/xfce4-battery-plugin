@@ -23,6 +23,7 @@ Wtyczka dla panelu XFce4 pokazuj±ca zu¿ycie baterii.
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.sub .
 %configure \
 	--disable-static
 
