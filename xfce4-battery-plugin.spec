@@ -13,10 +13,10 @@ Requires:	xfce4-panel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Battery monitor panel plugin for XFce4
+Battery monitor panel plugin for XFce4.
 
 %description -l pl
-Wtyczka dla panelu XFce4 pokazuj±ca zu¿ycie baterii
+Wtyczka dla panelu XFce4 pokazuj±ca zu¿ycie baterii.
 
 %prep
 %setup -q
