@@ -23,7 +23,11 @@ Wtyczka dla panelu Xfce4 pokazuj±ca zu¿ycie baterii.
 %setup -q
 
 %build
-cp -f /usr/share/automake/config.sub .
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-static
 
