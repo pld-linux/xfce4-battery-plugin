@@ -1,33 +1,39 @@
 Summary:	Battery monitor panel plugin for Xfce
 Summary(pl):	Monitor zu¿ycia baterii dla panelu Xfce
 Name:		xfce4-battery-plugin
-Version:	0.3.0
+Version:	0.5.0
 Release:	1
-License:	BSD-like
+License:	GPL v2
 Group:		X11/Applications
-Source0:	http://download.berlios.de/xfce-goodies/%{name}-%{version}.tar.gz
-# Source0-md5:	04e121df1ff264281e56e12a8ff5f155
-URL:		http://xfce-goodies.berlios.de/
-BuildRequires:	autoconf
+Source0:	http://goodies.xfce.org/releases/xfce4-battery-plugin/%{name}-%{version}.tar.bz2
+# Source0-md5:	c1d923bb90b79087ca7044bcc24bab5a
+URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
+BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	xfce4-panel-devel >= 3.99.2
-Requires:	xfce4-panel >= 3.99.2
+BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	xfce4-dev-tools >= 4.4.0
+BuildRequires:	xfce4-panel-devel >= 4.4.0
+Requires(post,postun):	gtk+2
+Requires(post,postun):	hicolor-icon-theme
+Requires:	xfce4-panel >= 4.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Battery monitor panel plugin for Xfce.
 
 %description -l pl
-Wtyczka dla panelu Xfce4 pokazuj±ca zu¿ycie baterii.
+Wtyczka dla panelu Xfce pokazuj±ca zu¿ycie baterii.
 
 %prep
 %setup -q
 
 %build
+%{__intltoolize}
 %{__libtoolize}
-%{__aclocal} -I m4
+%{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -42,12 +48,20 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/xfce4/panel-plugins/*.la
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%post
+%update_icon_cache hicolor
+
+%postun
+%update_icon_cache hicolor
+
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/*.so
+%doc AUTHORS ChangeLog README
+%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/xfce4-battery-plugin
+%{_datadir}/xfce4/panel-plugins/battmon.desktop
+%{_iconsdir}/hicolor/*/devices/*.*
