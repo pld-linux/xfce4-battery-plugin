@@ -1,0 +1,11 @@
+diff -urN xfce4-battery-plugin-0.5.1/configure.in xfce4-battery-plugin-0.5.1.new/configure.in
+--- xfce4-battery-plugin-0.5.1/configure.in	2008-09-04 23:05:56.000000000 +0200
++++ xfce4-battery-plugin-0.5.1.new/configure.in	2009-03-02 17:53:44.000000000 +0100
+@@ -39,6 +39,7 @@
+ AC_PROG_CC()
+ AC_PROG_LD()
+ AC_PROG_INSTALL()
++AC_PROG_LIBTOOL()
+ AC_PROG_INTLTOOL()
+ 
+ dnl **********************************
