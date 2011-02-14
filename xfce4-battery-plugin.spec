@@ -1,25 +1,23 @@
 Summary:	Battery monitor panel plugin for Xfce
 Summary(pl.UTF-8):	Monitor zużycia baterii dla panelu Xfce
 Name:		xfce4-battery-plugin
-Version:	0.5.1
-Release:	3
+Version:	1.0.0
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://goodies.xfce.org/releases/xfce4-battery-plugin/%{name}-%{version}.tar.bz2
-# Source0-md5:	d8a666d85bb3c1dd007b547de4dd7037
-Patch0:		%{name}-headers_fix.patch
-Patch1:		%{name}-buildfix.patch
+Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-battery-plugin/1.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	2696307f34f6b9630fcaaea102004e78
 URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	xfce4-dev-tools >= 4.4.0
 BuildRequires:	xfce4-panel-devel >= 4.4.0
-Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	hicolor-icon-theme
+Requires:	gtk-update-icon-cache
+Requires:	hicolor-icon-theme
 Requires:	xfce4-panel >= 4.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -31,8 +29,6 @@ Wtyczka dla panelu Xfce pokazująca zużycie baterii.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 %{__intltoolize}
@@ -52,8 +48,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_datadir}/locale/nb{_NO,}
-mv $RPM_BUILD_ROOT%{_datadir}/locale/pt{_PT,}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
 
 %find_lang %{name}
 
@@ -71,4 +66,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_libdir}/xfce4/panel-plugins/xfce4-battery-plugin
 %{_datadir}/xfce4/panel-plugins/battmon.desktop
-%{_iconsdir}/hicolor/*/devices/*.*
+%{_iconsdir}/hicolor/*/*/*.png
+%{_iconsdir}/hicolor/scalable/*/*.svg
