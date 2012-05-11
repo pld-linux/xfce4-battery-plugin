@@ -8,10 +8,6 @@ Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-battery-plugin/1.0/%{name}-%{version}.tar.bz2
 # Source0-md5:	4fb65d12928d438273eebbe76bba5d6d
 URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin
-BuildRequires:	autoconf >= 2.63
-BuildRequires:	automake
-BuildRequires:	intltool
-BuildRequires:	libtool
 BuildRequires:	libxfce4ui-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.601
@@ -32,12 +28,6 @@ Wtyczka dla panelu Xfce pokazująca zużycie baterii.
 %setup -q
 
 %build
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
 %configure \
 	--disable-static
 
@@ -49,6 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/*.la
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
 
 %find_lang %{name}
@@ -65,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/xfce4-battery-plugin
-%{_datadir}/xfce4/panel-plugins/battmon.desktop
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libbattery.so
+%{_datadir}/xfce4/panel/plugins/battery.desktop
 %{_iconsdir}/hicolor/*/*/*.png
 %{_iconsdir}/hicolor/scalable/*/*.svg
