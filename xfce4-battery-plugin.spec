@@ -1,12 +1,12 @@
 Summary:	Battery monitor panel plugin for Xfce
 Summary(pl.UTF-8):	Monitor zużycia baterii dla panelu Xfce
 Name:		xfce4-battery-plugin
-Version:	1.0.4
-Release:	2
+Version:	1.0.5
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-battery-plugin/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	a458fd2dbd2da604db1cf517288fc6db
+# Source0-md5:	ca2d394e411a20442a519efa0d14f8ec
 URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin
 BuildRequires:	libxfce4ui-devel
 BuildRequires:	pkgconfig
